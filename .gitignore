@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+
+# Environment Variables (MOST IMPORTANT - never push this!)
+.env
+.env.*
+
+# Docker
+*.env
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Migrations (optional - most devs keep these)
+# Uncomment below if you don't want to push migrations
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# Coverage & Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Distribution
+dist/
+build/
+*.egg-info/
