@@ -8,3 +8,6 @@ class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
         fields = ['id', 'doctor', 'patient', 'doctor_name', 'patient_name', 'appointment_date', 'status', 'notes']
+        extra_kwargs = {
+            'patient': {'required': False, 'allow_null': True}
+        }

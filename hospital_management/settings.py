@@ -39,11 +39,16 @@ INSTALLED_APPS = [
     'users',
     'appointments',
     'billing',
-    'prescriptions'
+    'prescriptions',
+    'drf_yasg',
 ]
 
-AUTH_USER_MODEL = 'users.USER'
+AUTH_USER_MODEL = 'users.User'
 
+# settings.py
+INSTALLED_APPS += ['corsheaders']
+
+CORS_ALLOW_ALL_ORIGINS = True  # for dev only
 
 #redis
 
@@ -71,14 +76,15 @@ SIMPLE_JWT = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',   # ← CORS must be at the top
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'hospital_management.urls'
@@ -151,3 +157,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
