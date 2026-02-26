@@ -2,7 +2,7 @@ import { useState, type ChangeEvent, type ReactNode } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
-const API = "http://127.0.0.1:8000/api";
+const API = "https://hospital-gxio.onrender.com/api";
 
 interface Token { value: string | null }
 const token: Token = { value: localStorage.getItem("token") };
