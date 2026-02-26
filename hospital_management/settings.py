@@ -5,6 +5,13 @@ import os
 from datetime import timedelta
 from dotenv import load_dotenv  # pyright: ignore[reportMissingImports]
 
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL')
+    )
+}
 
 load_dotenv()
 
