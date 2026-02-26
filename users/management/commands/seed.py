@@ -11,6 +11,11 @@ class Command(BaseCommand):
     help = 'Seed database with mock data'
 
     def handle(self, *args, **kwargs):
+        # ── Safety check — skip if already seeded ────────
+        if User.objects.filter(is_superuser=False).exists():
+            self.stdout.write('⏭ Data already seeded, skipping...')
+            return
+
         self.stdout.write('🌱 Seeding data...')
 
         # ── Clean existing data ──────────────────────────
@@ -108,7 +113,7 @@ class Command(BaseCommand):
             appointments.append(appt)
         self.stdout.write('✅ 7 Appointments created')
 
-        # ── Create Prescriptions (only completed appointments) ──
+        # ── Create Prescriptions ──────────────────────────
         rx_data = [
             dict(appt=appointments[0], diagnosis='Mild hypertension detected', medicines='Amlodipine 5mg - once daily\nAspirin 75mg - once daily', instructions='Reduce salt intake. Walk 30 mins daily. Follow up in 2 weeks.'),
             dict(appt=appointments[1], diagnosis='Tension headache with mild vertigo', medicines='Ibuprofen 400mg - twice daily after meals\nBetahistine 16mg - twice daily', instructions='Rest adequately. Avoid screen time. Stay hydrated.'),
